@@ -3,8 +3,8 @@ info:
   title: DotAAS Part 2 | HTTP/REST | Entire API Collection
   description: The entire API collection as part of Details of the Asset Administration Shell Part 2
   contact:
-    name: Constantin Ziesche, Andreas Orzelski, Florian Krebs, Bastian Rössl, Manuel Sauer, Jens Vialkowitsch, Michael Hoffmeister, Torben Miny, Sebastian Bader, Marko Ristin, Nico Braunisch
-  version: V1.0RC03
+    name: Constantin Ziesche, Andreas Orzelski, Florian Krebs, Bastian Rössl, Manuel Sauer, Jens Vialkowitsch, Michael Hoffmeister, Torben Miny
+  version: V1.0RC02
   termsOfService: https://github.com/admin-shell-io/aas-specs
 servers:
 - url: '{protocol}://{host_name}:{port}/api/{version_prefix}'
@@ -12,7 +12,7 @@ servers:
     protocol:
       description: 'Allows access through http and https (recommended)'
       enum:
-        - 'http'   
+        - 'http'
         - 'https'
       default: 'https'
     host_name:
@@ -36,21 +36,21 @@ paths:
       summary: Returns all Asset Administration Shells
       operationId: GetAllAssetAdministrationShells
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShells/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellsByAssetId/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellsByIdShort/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShells/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellsByAssetId/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellsByIdShort/1/0/RC02
       parameters:
         - name: assetIds
           in: query
-          description: A list of specific Asset identifiers
+          description: The key-value-pair of an Asset identifier
           required: false
           style: form
           explode: true
           schema:
             type: array
             items:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SpecificAssetId'
-            example: '[ { "name": "some-asset-id", "value": "http://example-company.com/myAsset", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://example-company.com/example-companys-asset-keys" } ], "type": "GlobalReference" } }, { "name": "some-other-asset-id", "value": "12345ABC", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://my-own-company.com/keys" } ], "type": "GlobalReference" } } ]e": "globalAssetId","value": "http://example.company/myAsset", "externalSubjectId": "http://example.company"},{"name": "myOwnInternalAssetId","value": "12345ABC", "externalSubjectId": "http://example.company"}]'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SpecificAssetId'
+            example: '[{"key": "globalAssetId","value": "http://example.company/myAsset"},{"key": "myOwnInternalAssetId","value": "12345ABC"}]'
         - name: idShort
           in: query
           description: The Asset Administration Shell’s IdShort
@@ -67,26 +67,26 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetAdministrationShell'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetAdministrationShell'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'          
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'          
     post:
       tags:
         - Asset Administration Shell Repository API
       summary: Creates a new Asset Administration Shell
       operationId: PostAssetAdministrationShell
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostAssetAdministrationShell/1/0/RC03
+        - https://admin-shell.io/aas/API/PostAssetAdministrationShell/1/0/RC02
       requestBody:
         description: Asset Administration Shell object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetAdministrationShell'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetAdministrationShell'
         required: true
       responses:
         '201':
@@ -94,19 +94,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetAdministrationShell'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetAdministrationShell'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'  
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'  
   /shells/{aasIdentifier}:
     get:
       tags:
@@ -114,7 +114,7 @@ paths:
       summary: Returns a specific Asset Administration Shell
       operationId: GetAssetAdministrationShellById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAssetAdministrationShellById/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAssetAdministrationShellById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -131,26 +131,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetAdministrationShell'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetAdministrationShell'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'  
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'  
     put:
       tags:
         - Asset Administration Shell Repository API
       summary: Updates an existing Asset Administration Shell
       operationId: PutAssetAdministrationShellById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutAssetAdministrationShellById/1/0/RC03
+        - https://admin-shell.io/aas/API/PutAssetAdministrationShellById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -166,7 +166,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetAdministrationShell'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetAdministrationShell'
         required: true
       responses:
         '204':
@@ -176,26 +176,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'  
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'  
     delete:
       tags:
         - Asset Administration Shell Repository API
       summary: Deletes an Asset Administration Shell
       operationId: DeleteAssetAdministrationShellById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteAssetAdministrationShellById/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteAssetAdministrationShellById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -214,13 +214,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /aas:
     get:
       tags:
@@ -228,37 +228,37 @@ paths:
       summary: Returns the Asset Administration Shell
       operationId: GetAssetAdministrationShell
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAssetAdministrationShell/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAssetAdministrationShell/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
       responses:
         '200':
           description: Requested Asset Administration Shell
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetAdministrationShell'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetAdministrationShell'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Asset Administration Shell API
       summary: Updates the Asset Administration Shell
       operationId: PutAssetAdministrationShell
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutAssetAdministrationShell/1/0/RC03
+        - https://admin-shell.io/aas/API/PutAssetAdministrationShell/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
       requestBody:
         description: Asset Administration Shell object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetAdministrationShell'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetAdministrationShell'
         required: true
       responses:
         '204':
@@ -268,13 +268,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
   /aas/asset-information:
     get:
       tags:
@@ -282,33 +282,33 @@ paths:
       summary: Returns the Asset Information
       operationId: GetAssetInformation
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAssetInformation/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAssetInformation/1/0/RC02
       responses:
         '200':
           description: Requested Asset Information
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetInformation'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetInformation'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Asset Administration Shell API
       summary: Updates the Asset Information
       operationId: PutAssetInformation
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutAssetInformation/1/0/RC03
+        - https://admin-shell.io/aas/API/PutAssetInformation/1/0/RC02
       requestBody:
         description: Asset Information object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/AssetInformation'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/AssetInformation'
         required: true
       responses:
         '204':
@@ -318,13 +318,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
   /aas/submodels:
     get:
       tags:
@@ -332,7 +332,7 @@ paths:
       summary: Returns all submodel references
       operationId: GetAllSubmodelReferences
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllSubmodelReferences/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllSubmodelReferences/1/0/RC02
       responses:
         '200':
           description: Requested submodel references
@@ -341,26 +341,26 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Reference'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Reference'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Asset Administration Shell API
       summary: Creates a submodel reference at the Asset Administration Shell
       operationId: PostSubmodelReference
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostSubmodelReference/1/0/RC03
+        - https://admin-shell.io/aas/API/PostSubmodelReference/1/0/RC02
       requestBody:
         description: Reference to the Submodel
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Reference'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Reference'
         required: true
       responses:
         '201':
@@ -368,19 +368,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Reference'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Reference'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /aas/submodels/{submodelIdentifier}:
     delete:
       tags:
@@ -388,7 +388,7 @@ paths:
       summary: Deletes the submodel reference from the Asset Administration Shell
       operationId: DeleteSubmodelReferenceById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteSubmodelReference/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteSubmodelReference/1/0/RC02
       parameters:
         - name: submodelIdentifier
           in: path
@@ -407,13 +407,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodels:
     get:
       tags:
@@ -421,11 +421,11 @@ paths:
       summary: Returns all Submodels
       operationId: GetAllSubmodels
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllSubmodels/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllSubmodelsBySemanticId/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllSubmodelsByIdShort/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllSubmodels/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllSubmodelsBySemanticId/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllSubmodelsByIdShort/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/SemanticId'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/SemanticId'
         - name: idShort
           in: query
           description: The Submodel’s idShort
@@ -442,26 +442,26 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Submodel'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Submodel'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Submodel Repository API
       summary: Creates a new Submodel
       operationId: PostSubmodel
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostSubmodel/1/0/RC03
+        - https://admin-shell.io/aas/API/PostSubmodel/1/0/RC02
       requestBody:
         description: Submodel object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Submodel'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Submodel'
         required: true
       responses:
         '201':
@@ -469,19 +469,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Submodel'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Submodel'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodels/{submodelIdentifier}:
     get:
       tags:
@@ -489,7 +489,7 @@ paths:
       summary: Returns a specific Submodel
       operationId: GetSubmodelById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetSubmodelById/1/0/RC03
+        - https://admin-shell.io/aas/API/GetSubmodelById/1/0/RC02
       parameters:
         - name: submodelIdentifier
           in: path
@@ -506,26 +506,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Submodel'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Submodel'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Submodel Repository API
       summary: Updates an existing Submodel
       operationId: PutSubmodelById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutSubmodelById/1/0/RC03
+        - https://admin-shell.io/aas/API/PutSubmodelById/1/0/RC02
       parameters:
         - name: submodelIdentifier
           in: path
@@ -541,7 +541,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Submodel'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Submodel'
         required: true
       responses:
         '204':
@@ -551,26 +551,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
     delete:
       tags:
         - Submodel Repository API
       summary: Deletes a Submodel
       operationId: DeleteSubmodelById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteSubmodelById/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteSubmodelById/1/0/RC02
       parameters:
         - name: submodelIdentifier
           in: path
@@ -589,13 +589,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodel:
     get:
       tags:
@@ -603,41 +603,41 @@ paths:
       summary: Returns the Submodel
       operationId: GetSubmodel
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetSubmodel/1/0/RC03
+        - https://admin-shell.io/aas/API/GetSubmodel/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Extent'
       responses:
         '200':
           description: Requested Submodel
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Submodel'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Submodel'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Submodel API
       summary: Updates the Submodel
       operationId: PutSubmodel
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutSubmodel/1/0/RC03
+        - https://admin-shell.io/aas/API/PutSubmodel/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Extent'
       requestBody:
         description: Submodel object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Submodel'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/Submodel'
         required: true
       responses:
         '204':
@@ -647,13 +647,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
   /submodel/submodel-elements:
     get:
       tags:
@@ -661,13 +661,13 @@ paths:
       summary: Returns all submodel elements including their hierarchy
       operationId: GetAllSubmodelElements
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllSubmodelElements/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllSubmodelElementsBySemanticId/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllSubmodelElementsByParentPathAndSemanticId/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllSubmodelElements/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllSubmodelElementsBySemanticId/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllSubmodelElementsByParentPathAndSemanticId/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Extent'
       responses:
         '200':
           description: List of found submodel elements
@@ -676,30 +676,30 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SubmodelElement'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SubmodelElement'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Submodel API
       summary: Creates a new submodel element
       operationId: PostSubmodelElement
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostSubmodelElement/1/0/RC03c
+        - https://admin-shell.io/aas/API/PostSubmodelElement/1/0/RC02c
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Extent'
       requestBody:
         description: Requested submodel element
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SubmodelElement'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SubmodelElement'
         required: true
       responses:
         '201':
@@ -707,19 +707,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SubmodelElement'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SubmodelElement'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodel/submodel-elements/{idShortPath}:
     get:
       tags:
@@ -728,11 +728,11 @@ paths:
         path
       operationId: GetSubmodelElementByPath
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetSubmodelElementByPath/1/0/RC03
+        - https://admin-shell.io/aas/API/GetSubmodelElementByPath/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Extent'
         - name: idShortPath
           in: path
           description: IdShort path to the submodel element (dot-separated)
@@ -747,30 +747,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SubmodelElement'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SubmodelElement'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Submodel API
       summary: Creates a new submodel element at a specified path within submodel elements hierarchy
       operationId: PostSubmodelElementByPath
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostSubmodelElementByPath/1/0/RC03c
+        - https://admin-shell.io/aas/API/PostSubmodelElementByPath/1/0/RC02c
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Extent'
         - name: idShortPath
           in: path
           description: IdShort path to the submodel element (dot-separated)
@@ -784,7 +784,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SubmodelElement'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SubmodelElement'
         required: true
       responses:
         '201':
@@ -792,37 +792,37 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SubmodelElement'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SubmodelElement'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Submodel API
       summary: Updates an existing submodel element at a specified path within submodel elements hierarchy
       operationId: PutSubmodelElementByPath
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutSubmodelElementByPath/1/0/RC03
-        - https://admin-shell.io/aas/API/SetSubmodelElementValueByPath/1/0/RC03
+        - https://admin-shell.io/aas/API/PutSubmodelElementByPath/1/0/RC02c
+        - https://admin-shell.io/aas/API/SetSubmodelElementValueByPath/1/0/RC02
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Extent'
         - name: idShortPath
           in: path
           description: IdShort path to the submodel element (dot-separated)
@@ -836,7 +836,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SubmodelElement'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SubmodelElement'
         required: true
       responses:
         '204':
@@ -846,26 +846,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
     delete:
       tags:
         - Submodel API
       summary: Deletes a submodel element at a specified path within the submodel elements hierarchy
       operationId: DeleteSubmodelElementByPath
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteSubmodelElementByPath/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteSubmodelElementByPath/1/0/RC02
       parameters:
         - name: idShortPath
           in: path
@@ -883,13 +883,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodel/submodel-elements/{idShortPath}/attachment:
     get:
       tags:
@@ -897,7 +897,7 @@ paths:
       summary: Downloads file content from a specific submodel element from the Submodel at a specified path
       operationId: GetFileByPath
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetFileByPath/1/0/RC03
+        - https://admin-shell.io/aas/API/GetFileByPath/1/0/RC02
       parameters:
         - name: idShortPath
           in: path
@@ -926,26 +926,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '405':
           description: Method not allowed - Download only valid for File submodel element
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Submodel API
       summary: Uploads file content to an existing submodel element at a specified path within submodel elements hierarchy
       operationId: PutFileByPath
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutFileByPath/1/0/RC03
+        - https://admin-shell.io/aas/API/PutFileByPath/1/0/RC02
       parameters:
         - name: idShortPath
           in: path
@@ -964,8 +964,6 @@ paths:
               properties:
                 fileName:
                   type: string
-                file:
-                  type: string
                   format: binary
             encoding:
               file:
@@ -979,25 +977,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
         '405':
           description: Method not allowed - Upload only valid for File submodel element
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
   /submodel/submodel-elements/{idShortPath}/invoke:
     post:
       tags:
@@ -1005,8 +1003,8 @@ paths:
       summary: Synchronously or asynchronously invokes an Operation at a specified path
       operationId: InvokeOperation
       x-semanticIds:
-        - https://admin-shell.io/aas/API/InvokeOperationSync/1/0/RC03
-        - https://admin-shell.io/aas/API/InvokeOperationAsync/1/0/RC03
+        - https://admin-shell.io/aas/API/InvokeOperationSync/1/0/RC02
+        - https://admin-shell.io/aas/API/InvokeOperationAsync/1/0/RC02
       parameters:
         - name: async
           in: query
@@ -1014,7 +1012,7 @@ paths:
           schema:
             type: boolean
             default: false
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/parameters/Content'
         - name: idShortPath
           in: path
           description: IdShort path to the submodel element (dot-separated), in this case an operation
@@ -1028,7 +1026,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/OperationRequest'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/OperationRequest'
         required: true
       responses:
         '200':
@@ -1036,31 +1034,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/OperationResult'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/OperationResult'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '405':
           description: Method not allowed - Invoke only valid for Operation submodel element
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodel/submodel-elements/{idShortPath}/operation-results/{handleId}:
     get:
       tags:
@@ -1068,7 +1066,7 @@ paths:
       summary: Returns the Operation result of an asynchronous invoked Operation
       operationId: GetOperationAsyncResult
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetOperationAsyncResult/1/0/RC03
+        - https://admin-shell.io/aas/API/GetOperationAsyncResult/1/0/RC02
       parameters:
         - name: content
           in: query
@@ -1101,19 +1099,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/OperationResult'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/OperationResult'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /shell-descriptors:
     get:
       tags:
@@ -1121,7 +1119,7 @@ paths:
       summary: Returns all Asset Administration Shell Descriptors
       operationId: GetAllAssetAdministrationShellDescriptors
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellDescriptors/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellDescriptors/1/0/RC02
       responses:
         '200':
           description: Requested Asset Administration Shell Descriptors
@@ -1130,26 +1128,26 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/AssetAdministrationShellDescriptor'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/AssetAdministrationShellDescriptor'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Asset Administration Shell Registry API
       summary: Creates a new Asset Administration Shell Descriptor, i.e. registers an AAS
       operationId: PostAssetAdministrationShellDescriptor
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostAssetAdministrationShellDescriptor/1/0/RC03
+        - https://admin-shell.io/aas/API/PostAssetAdministrationShellDescriptor/1/0/RC02
       requestBody:
         description: Asset Administration Shell Descriptor object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/AssetAdministrationShellDescriptor'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/AssetAdministrationShellDescriptor'
         required: true
       responses:
         '201':
@@ -1157,19 +1155,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/AssetAdministrationShellDescriptor'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/AssetAdministrationShellDescriptor'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /shell-descriptors/{aasIdentifier}:
     get:
       tags:
@@ -1177,7 +1175,7 @@ paths:
       summary: Returns a specific Asset Administration Shell Descriptor
       operationId: GetAssetAdministrationShellDescriptorById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAssetAdministrationShellDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAssetAdministrationShellDescriptorById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1194,26 +1192,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/AssetAdministrationShellDescriptor'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/AssetAdministrationShellDescriptor'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Asset Administration Shell Registry API
       summary: Updates an existing Asset Administration Shell Descriptor
       operationId: PutAssetAdministrationShellDescriptorById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutAssetAdministrationShellDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/PutAssetAdministrationShellDescriptorById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1229,7 +1227,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/AssetAdministrationShellDescriptor'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/AssetAdministrationShellDescriptor'
         required: true
       responses:
         '204':
@@ -1239,26 +1237,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
     delete:
       tags:
         - Asset Administration Shell Registry API
       summary: Deletes an Asset Administration Shell Descriptor, i.e. de-registers an AAS
       operationId: DeleteAssetAdministrationShellDescriptorById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteAssetAdministrationShellDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteAssetAdministrationShellDescriptorById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1277,13 +1275,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /shell-descriptors/{aasIdentifier}/submodel-descriptors:
     get:
       tags:
@@ -1291,7 +1289,7 @@ paths:
       summary: Returns all Submodel Descriptors
       operationId: GetAllSubmodelDescriptors_AASRegistry
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllSubmodelDescriptors/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllSubmodelDescriptors/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1310,26 +1308,26 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Asset Administration Shell Registry API
       summary: Creates a new Submodel Descriptor, i.e. registers a submodel
       operationId: PostSubmodelDescriptor_AASRegistry
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostSubmodelDescriptor/1/0/RC03
+        - https://admin-shell.io/aas/API/PostSubmodelDescriptor/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1345,7 +1343,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         required: true
       responses:
         '201':
@@ -1353,25 +1351,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /shell-descriptors/{aasIdentifier}/submodel-descriptors/{submodelIdentifier}:
     get:
       tags:
@@ -1379,7 +1377,7 @@ paths:
       summary: Returns a specific Submodel Descriptor
       operationId: GetSubmodelDescriptorById_AASRegistry
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetSubmodelDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/GetSubmodelDescriptorById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1403,26 +1401,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Asset Administration Shell Registry API
       summary: Updates an existing Submodel Descriptor
       operationId: PutSubmodelDescriptorById_AASRegistry
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutSubmodelDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/PutSubmodelDescriptorById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1445,7 +1443,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         required: true
       responses:
         '204':
@@ -1455,26 +1453,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
     delete:
       tags:
         - Asset Administration Shell Registry API
       summary: Deletes a Submodel Descriptor, i.e. de-registers a submodel
       operationId: DeleteSubmodelDescriptorById_AASRegistry
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteSubmodelDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteSubmodelDescriptorById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -1500,13 +1498,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodel-descriptors:
     get:
       tags:
@@ -1514,7 +1512,7 @@ paths:
       summary: Returns all Submodel Descriptors
       operationId: GetAllSubmodelDescriptors
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllSubmodelDescriptors/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllSubmodelDescriptors/1/0/RC02
       responses:
         '200':
           description: Requested Submodel Descriptors
@@ -1523,26 +1521,26 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Submodel Registry API
       summary: Creates a new Submodel Descriptor, i.e. registers a submodel
       operationId: PostSubmodelDescriptor
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostSubmodelDescriptor/1/0/RC03
+        - https://admin-shell.io/aas/API/PostSubmodelDescriptor/1/0/RC02
       requestBody:
         description: Submodel Descriptor object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         required: true
       responses:
         '201':
@@ -1550,19 +1548,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /submodel-descriptors/{submodelIdentifier}:
     get:
       tags:
@@ -1570,7 +1568,7 @@ paths:
       summary: Returns a specific Submodel Descriptor
       operationId: GetSubmodelDescriptorById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetSubmodelDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/GetSubmodelDescriptorById/1/0/RC02
       parameters:
         - name: submodelIdentifier
           in: path
@@ -1580,33 +1578,32 @@ paths:
           explode: false
           schema:
             type: string
-            format: byte
       responses:
         '200':
           description: Requested Submodel Descriptor
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Submodel Registry API
       summary: Updates an existing Submodel Descriptor
       operationId: PutSubmodelDescriptorById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutSubmodelDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/PutSubmodelDescriptorById/1/0/RC02
       parameters:
         - name: submodelIdentifier
           in: path
@@ -1616,13 +1613,12 @@ paths:
           explode: false
           schema:
             type: string
-            format: byte
       requestBody:
         description: Submodel Descriptor object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/SubmodelDescriptor'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/SubmodelDescriptor'
         required: true
       responses:
         '204':
@@ -1632,26 +1628,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
     delete:
       tags:
         - Submodel Registry API
       summary: Deletes a Submodel Descriptor, i.e. de-registers a submodel
       operationId: DeleteSubmodelDescriptorById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteSubmodelDescriptorById/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteSubmodelDescriptorById/1/0/RC02
       parameters:
         - name: submodelIdentifier
           in: path
@@ -1661,7 +1657,6 @@ paths:
           explode: false
           schema:
             type: string
-            format: byte
       responses:
         '204':
           description: Submodel Descriptor deleted successfully
@@ -1670,13 +1665,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /concept-descriptions:
     get:
       tags:
@@ -1684,10 +1679,10 @@ paths:
       summary: Returns all Concept Descriptions
       operationId: GetAllConceptDescriptions
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllConceptDescriptions/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllConceptDescriptionsByIdShort/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllConceptDescriptionsByIsCaseOf/1/0/RC03
-        - https://admin-shell.io/aas/API/GetAllConceptDescriptionsByDataSpecificationReference/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllConceptDescriptions/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllConceptDescriptionsByIdShort/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllConceptDescriptionsByIsCaseOf/1/0/RC02
+        - https://admin-shell.io/aas/API/GetAllConceptDescriptionsByDataSpecificationReference/1/0/RC02
       parameters:
         - name: idShort
           in: query
@@ -1705,7 +1700,6 @@ paths:
           explode: true
           schema:
             type: string
-            format: byte
         - name: dataSpecificationRef
           in: query
           description: DataSpecification reference (UTF8-BASE64-URL-encoded)
@@ -1714,7 +1708,6 @@ paths:
           explode: true
           schema:
             type: string
-            format: byte
       responses:
         '200':
           description: Requested Concept Descriptions
@@ -1723,26 +1716,26 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/ConceptDescription'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/ConceptDescription'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Concept Description Repository API
       summary: Creates a new Concept Description
       operationId: PostConceptDescription
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostConceptDescription/1/0/RC03
+        - https://admin-shell.io/aas/API/PostConceptDescription/1/0/RC02
       requestBody:
         description: Concept Description object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/ConceptDescription'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/ConceptDescription'
         required: true
       responses:
         '201':
@@ -1750,19 +1743,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/ConceptDescription'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/ConceptDescription'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /concept-descriptions/{cdIdentifier}:
     get:
       tags:
@@ -1770,7 +1763,7 @@ paths:
       summary: Returns a specific Concept Description
       operationId: GetConceptDescriptionById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetConceptDescriptionById/1/0/RC03
+        - https://admin-shell.io/aas/API/GetConceptDescriptionById/1/0/RC02
       parameters:
         - name: cdIdentifier
           in: path
@@ -1780,33 +1773,32 @@ paths:
           explode: true
           schema:
             type: string
-            format: byte
       responses:
         '200':
           description: Requested Concept Description
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/ConceptDescription'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/ConceptDescription'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - Concept Description Repository API
       summary: Updates an existing Concept Description
       operationId: PutConceptDescriptionById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutConceptDescriptionById/1/0/RC03
+        - https://admin-shell.io/aas/API/PutConceptDescriptionById/1/0/RC02
       parameters:
         - name: cdIdentifier
           in: path
@@ -1816,13 +1808,12 @@ paths:
           explode: false
           schema:
             type: string
-            format: byte
       requestBody:
         description: Concept Description object
         content:
           application/json:
             schema:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/ConceptDescription'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/ConceptDescription'
         required: true
       responses:
         '204':
@@ -1832,26 +1823,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
     delete:
       tags:
         - Concept Description Repository API
       summary: Deletes a Concept Description
       operationId: DeleteConceptDescriptionById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteConceptDescriptionById/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteConceptDescriptionById/1/0/RC02
       parameters:
         - name: cdIdentifier
           in: path
@@ -1861,7 +1852,6 @@ paths:
           explode: false
           schema:
             type: string
-            format: byte
       responses:
         '204':
           description: Concept Description deleted successfully
@@ -1870,13 +1860,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /packages:
     get:
       tags:
@@ -1884,7 +1874,7 @@ paths:
       summary: Returns a list of available AASX packages at the server
       operationId: GetAllAASXPackageIds
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllAASXPackageIds/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllAASXPackageIds/1/0/RC02
       parameters:
         - name: aasId
           in: query
@@ -1894,7 +1884,6 @@ paths:
           explode: true
           schema:
             type: string
-            format: byte
       responses:
         '200':
           description: Requested package list
@@ -1903,20 +1892,20 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/PackageDescription'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/PackageDescription'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - AASX File Server API
       summary: Stores the AASX package at the server
       operationId: PostAASXPackage
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostAASXPackage/1/0/RC03
+        - https://admin-shell.io/aas/API/PostAASXPackage/1/0/RC02
       requestBody:
         description: AASX package
         content:
@@ -1927,7 +1916,7 @@ paths:
                 aasIds:
                   type: array
                   items:
-                    type: string
+                    $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Identifier'
                 file:
                   type: string
                   format: binary
@@ -1943,19 +1932,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/PackageDescription'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/PackageDescription'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /packages/{packageId}:
     get:
       tags:
@@ -1963,7 +1952,7 @@ paths:
       summary: Returns a specific AASX package from the server
       operationId: GetAASXByPackageId
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAASXByPackageId/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAASXByPackageId/1/0/RC02
       parameters:
         - name: packageId
           in: path
@@ -1973,7 +1962,6 @@ paths:
           explode: true
           schema:
             type: string
-            format: byte
       responses:
         '200':
           description: Requested AASX package
@@ -1992,20 +1980,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     put:
       tags:
         - AASX File Server API
       summary: Updates the AASX package at the server
       operationId: PutAASXByPackageId
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PutAASXByPackageId/1/0/RC03
+        - https://admin-shell.io/aas/API/PutAASXByPackageId/1/0/RC02
       parameters:
         - name: packageId
           in: path
@@ -2015,7 +2003,6 @@ paths:
           explode: true
           schema:
             type: string
-            format: byte
       requestBody:
         description: AASX package
         content:
@@ -2026,7 +2013,7 @@ paths:
                 aasIds:
                   type: array
                   items:
-                    type: string
+                    $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Identifier'
                 file:
                   type: string
                   format: binary
@@ -2044,26 +2031,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result' 
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result' 
     delete:
       tags:
         - AASX File Server API
       summary: Deletes a specific AASX package from the server
       operationId: DeleteAASXByPackageId
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteAASXByPackageId/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteAASXByPackageId/1/0/RC02
       parameters:
         - name: packageId
           in: path
@@ -2082,13 +2069,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /serialization:
     get:
       tags:
@@ -2096,7 +2083,7 @@ paths:
       summary: Returns an appropriate serialization based on the specified format (see SerializationFormat)
       operationId: GenerateSerializationByIds
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GenerateSerializationByIds/1/0/RC03
+        - https://admin-shell.io/aas/API/GenerateSerializationByIds/1/0/RC02
       parameters:
         - name: aasIds
           in: query
@@ -2107,7 +2094,7 @@ paths:
           schema:
             type: array
             items:
-              type: string
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Identifier'
         - name: submodelIds
           in: query
           description: The Submodels' unique ids (UTF8-BASE64-URL-encoded)
@@ -2117,7 +2104,7 @@ paths:
           schema:
             type: array
             items:
-              type: string
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Identifier'
         - name: includeConceptDescriptions
           in: query
           description: Include Concept Descriptions?
@@ -2138,36 +2125,36 @@ paths:
                 format: binary
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Environment'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/AssetAdministrationShellEnvironment'
             application/xml:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/Environment'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/AssetAdministrationShellEnvironment'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /lookup/shells:
     get:
       tags:
         - Asset Administration Shell Basic Discovery API
-      summary: Returns a list of Asset Administration Shell ids linked to specific Asset identifiers 
+      summary: Returns a list of Asset Administration Shell ids based on Asset identifier key-value-pairs
       operationId: GetAllAssetAdministrationShellIdsByAssetLink
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellIdsByAssetLink/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllAssetAdministrationShellIdsByAssetLink/1/0/RC02
       parameters:
         - name: assetIds
           in: query
-          description: A list of specific Asset identifiers
+          description: The key-value-pair of an Asset identifier
           required: false
           style: form
           explode: true
           schema:
             type: array
             items:
-              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SpecificAssetId'
-            example: '[ { "name": "some-asset-id", "value": "http://example-company.com/myAsset", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://example-company.com/example-companys-asset-keys" } ], "type": "GlobalReference" } }, { "name": "some-other-asset-id", "value": "12345ABC", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://my-own-company.com/keys" } ], "type": "GlobalReference" } } ]e": "globalAssetId","value": "http://example.company/myAsset", "externalSubjectId": "http://example.company"},{"name": "myOwnInternalAssetId","value": "12345ABC", "externalSubjectId": "http://example.company"}]'
+              $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SpecificAssetId'
+            example: '[{"key": "globalAssetId","value": "http://example.company/myAsset"},{"key": "myOwnInternalAssetId","value": "12345ABC"}]'
       responses:
         '200':
           description: Requested Asset Administration Shell ids
@@ -2176,21 +2163,21 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Identifier'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /lookup/shells/{aasIdentifier}:
     get:
       tags:
         - Asset Administration Shell Basic Discovery API
-      summary: Returns a list of specific Asset identifiers based on an Asset Administration Shell id to edit discoverable content
+      summary: Returns a list of Asset identifier key-value-pairs based on an Asset Administration Shell id to edit discoverable content
       operationId: GetAllAssetLinksById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/GetAllAssetLinksById/1/0/RC03
+        - https://admin-shell.io/aas/API/GetAllAssetLinksById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -2200,35 +2187,34 @@ paths:
           explode: false
           schema:
             type: string
-            format: byte
       responses:
         '200':
-          description: Requested specific Asset identifiers
+          description: Requested Asset identifier key-value-pairs
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SpecificAssetId'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SpecificAssetId'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     post:
       tags:
         - Asset Administration Shell Basic Discovery API
-      summary: Creates specific Asset identifiers linked to an Asset Administration Shell to edit discoverable content
+      summary: Creates all Asset identifier key-value-pair linked to an Asset Administration Shell to edit discoverable content
       operationId: PostAllAssetLinksById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/PostAllAssetLinksById/1/0/RC03
+        - https://admin-shell.io/aas/API/PostAllAssetLinksById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -2238,50 +2224,49 @@ paths:
           explode: false
           schema:
             type: string
-            format: bytev
       requestBody:
-        description: A list of specific Asset identifiers
+        description: Asset identifier key-value-pairs
         content:
           application/json:
             schema:
               type: array
               items:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SpecificAssetId'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SpecificAssetId'
         required: true
       responses:
         '201':
-          description: Specific Asset identifiers created successfully
+          description: Asset identifier key-value-pairs created successfully
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SpecificAssetId'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V3.0RC02#/components/schemas/SpecificAssetId'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
     delete:
       tags:
         - Asset Administration Shell Basic Discovery API
-      summary: Deletes all specific Asset identifiers linked to an Asset Administration Shell to edit discoverable content
+      summary: Deletes all Asset identifier key-value-pair linked to an Asset Administration Shell to edit discoverable content
       operationId: DeleteAllAssetLinksById
       x-semanticIds:
-        - https://admin-shell.io/aas/API/DeleteAllAssetLinksById/1/0/RC03
+        - https://admin-shell.io/aas/API/DeleteAllAssetLinksById/1/0/RC02
       parameters:
         - name: aasIdentifier
           in: path
@@ -2291,22 +2276,21 @@ paths:
           explode: false
           schema:
             type: string
-            format: byte
       responses:
         '204':
-          description: Specific Asset identifiers deleted successfully
+          description: Asset identifier key-value-pairs deleted successfully
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'      
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'      
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
   /descriptor:
     get:
       tags:
@@ -2314,7 +2298,7 @@ paths:
       summary: Returns the self-describing information of a network resource (Descriptor)
       operationId: GetDescriptor
       x-semanticIds:
-        - https://admin-shell.io/aas/API/Descriptor/GetDescriptor/1/0/RC03
+        - https://admin-shell.io/aas/API/Descriptor/GetDescriptor/1/0/RC02
       responses:
         '200':
           description: Requested Descriptor
@@ -2323,10 +2307,10 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Descriptor'
+                  $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Descriptor'
         default:
           description: Default error handling for unmentioned status codes
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/Result'
+                $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Shared-Domain-Models/V1.0RC02#/components/schemas/Result'
