@@ -1389,6 +1389,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
         - name: submodelIdentifier
           in: path
           description: The Submodel’s unique id (UTF8-BASE64-URL-encoded)
@@ -1397,6 +1398,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
       responses:
         '200':
           description: Requested Submodel Descriptor
@@ -1432,6 +1434,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
         - name: submodelIdentifier
           in: path
           description: The Submodel’s unique id (UTF8-BASE64-URL-encoded)
@@ -1440,6 +1443,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
       requestBody:
         description: Submodel Descriptor object
         content:
@@ -1484,6 +1488,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
         - name: submodelIdentifier
           in: path
           description: The Submodel’s unique id (UTF8-BASE64-URL-encoded)
@@ -1492,6 +1497,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
       responses:
         '204':
           description: Submodel Descriptor deleted successfully
@@ -2108,6 +2114,7 @@ paths:
             type: array
             items:
               type: string
+              format: byte
         - name: submodelIds
           in: query
           description: The Submodels' unique ids (UTF8-BASE64-URL-encoded)
@@ -2118,6 +2125,7 @@ paths:
             type: array
             items:
               type: string
+              format: byte
         - name: includeConceptDescriptions
           in: query
           description: Include Concept Descriptions?
@@ -2238,7 +2246,7 @@ paths:
           explode: false
           schema:
             type: string
-            format: bytev
+            format: byte
       requestBody:
         description: A list of specific Asset identifiers
         content:
