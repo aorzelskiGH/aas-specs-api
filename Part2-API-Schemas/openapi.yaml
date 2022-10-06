@@ -59,7 +59,7 @@ components:
           $ref: "#/components/schemas/ReferenceValue"
         second: 
           $ref: "#/components/schemas/ReferenceValue"
-        annotation:
+        annotations:
           type: array
           items:
             $ref: "#/components/schemas/ValueOnly"
