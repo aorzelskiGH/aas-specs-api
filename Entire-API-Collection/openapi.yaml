@@ -1131,6 +1131,20 @@ paths:
                 type: array
                 items:
                   $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/AssetAdministrationShellDescriptor'
+          links:
+            GetAssetAdministrationShellDescriptorById:
+              operationId: GetAssetAdministrationShellDescriptorById
+              parameters:
+                aasIdentifier: '$response.body#/0/identifier' # TODO: Wildcards are not allowed, so only a reference to the first array entry is possible.
+              description: >-
+                The `identifier` value of the returned Descriptors can be used for the `aasIdentifier` parameter of the GetAssetAdministrationShellDescriptorById API Operation. A base64 encoding of the value is needed.
+            PutAssetAdministrationShellDescriptorById:
+              operationId: PutAssetAdministrationShellDescriptorById
+              parameters:
+                aasIdentifier: '$response.body#/0/identifier' # TODO: Wildcards are not allowed, so only a reference to the first array entry is possible.
+              description: >-
+                The `identifier` value of the returned Descriptors can be used for the `aasIdentifier` parameter of the PutAssetAdministrationShellDescriptorById API Operation. A base64 encoding of the value is needed.
+            # TODO: Add also all the other API Operations.
         default:
           description: Default error handling for unmentioned status codes
           content:
@@ -2185,6 +2199,25 @@ paths:
                 type: array
                 items:
                   type: string
+          links:
+            GetAllAssetLinksById:
+              operationId: GetAllAssetLinksById
+              parameters:
+                aasIdentifier: '$response.body#/0' # TODO: 1) Wildcards are not allowed, so only a reference to the first array entry is possible. 2) There is no way to define a needed base64 encoding on the returned value 
+              description: >-
+                The values returned by this operation can be used for the `aasIdentifier` of the GetAllAssetLinksById API Operation.
+            PostAllAssetLinksById:
+              operationId: PostAllAssetLinksById
+              parameters:
+                aasIdentifier: '$response.body#/0' # TODO: 1) Wildcards are not allowed, so only a reference to the first array entry is possible. 2) There is no way to define a needed base64 encoding on the returned value 
+              description: >-
+                The values returned by this operation can be used for the `aasIdentifier` of the PostAllAssetLinksById API Operation.
+            DeleteAllAssetLinksById:
+              operationId: DeleteAllAssetLinksById
+              parameters:
+                aasIdentifier: '$response.body#/0' # TODO: 1) Wildcards are not allowed, so only a reference to the first array entry is possible. 2) There is no way to define a needed base64 encoding on the returned value 
+              description: >-
+                The values returned by this operation can be used for the `aasIdentifier` of the DeleteAllAssetLinksById API Operation.
         default:
           description: Default error handling for unmentioned status codes
           content:
