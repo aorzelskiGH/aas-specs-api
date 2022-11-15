@@ -2211,7 +2211,7 @@ paths:
                 type: array
                 items:
                   type: string
-          links:
+          links: # TODO delete OASlinks
             GetAllAssetLinksById:
               operationId: GetAllAssetLinksById
               parameters:
