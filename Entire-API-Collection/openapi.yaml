@@ -50,7 +50,7 @@ paths:
             type: array
             items:
               $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SpecificAssetId'
-            example: '[ { "name": "some-asset-id", "value": "http://example-company.com/myAsset", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://example-company.com/example-companys-asset-keys" } ], "type": "GlobalReference" } }, { "name": "some-other-asset-id", "value": "12345ABC", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://my-own-company.com/keys" } ], "type": "GlobalReference" } } ]e": "globalAssetId","value": "http://example.company/myAsset", "externalSubjectId": "http://example.company"},{"name": "myOwnInternalAssetId","value": "12345ABC", "externalSubjectId": "http://example.company"}]'
+            example: '[ { "name": "some-asset-id", "value": "http://example-company.com/myAsset", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://example-company.com/example-companys-asset-keys" } ], "type": "GlobalReference" } }, { "name": "some-other-asset-id", "value": "12345ABC", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://my-own-company.com/keys" } ], "type": "GlobalReference" } } ]'
         - name: idShort
           in: query
           description: The Asset Administration Shell’s IdShort
@@ -2201,7 +2201,7 @@ paths:
             type: array
             items:
               $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0RC02#/components/schemas/SpecificAssetId'
-            example: '[ { "name": "some-asset-id", "value": "http://example-company.com/myAsset", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://example-company.com/example-companys-asset-keys" } ], "type": "GlobalReference" } }, { "name": "some-other-asset-id", "value": "12345ABC", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://my-own-company.com/keys" } ], "type": "GlobalReference" } } ]e": "globalAssetId","value": "http://example.company/myAsset", "externalSubjectId": "http://example.company"},{"name": "myOwnInternalAssetId","value": "12345ABC", "externalSubjectId": "http://example.company"}]'
+            example: '[ { "name": "some-asset-id", "value": "http://example-company.com/myAsset", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://example-company.com/example-companys-asset-keys" } ], "type": "GlobalReference" } }, { "name": "some-other-asset-id", "value": "12345ABC", "externalSubjectId": { "keys": [ { "type": "GlobalReference", "value": "http://my-own-company.com/keys" } ], "type": "GlobalReference" } } ]'
       responses:
         '200':
           description: Requested Asset Administration Shell ids
