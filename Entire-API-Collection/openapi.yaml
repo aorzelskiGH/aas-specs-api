@@ -4,7 +4,7 @@ info:
   description: The entire API collection as part of Details of the Asset Administration Shell Part 2
   contact:
     name: Constantin Ziesche, Andreas Orzelski, Florian Krebs, Bastian Rössl, Manuel Sauer, Jens Vialkowitsch, Michael Hoffmeister, Torben Miny, Sebastian Bader, Marko Ristin, Nico Braunisch
-  version: V1.0RC03
+  version: V1.1_working_version
   termsOfService: https://github.com/admin-shell-io/aas-specs
 servers:
 - url: '{protocol}://{host_name}:{port}/api/{version_prefix}'
@@ -59,6 +59,9 @@ paths:
           explode: true
           schema:
             type: string
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
       responses:
         '200':
           description: Requested Asset Administration Shells
@@ -125,6 +128,9 @@ paths:
           schema:
             type: string
             format: byte
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
       responses:
         '200':
           description: Requested Asset Administration Shell
@@ -434,6 +440,9 @@ paths:
           explode: true
           schema:
             type: string
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
       responses:
         '200':
           description: Requested Submodels
@@ -500,6 +509,9 @@ paths:
           schema:
             type: string
             format: byte
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
       responses:
         '200':
           description: Requested Submodel
@@ -1131,6 +1143,20 @@ paths:
                 type: array
                 items:
                   $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/schemas/AssetAdministrationShellDescriptor'
+          links:
+            GetAssetAdministrationShellDescriptorById:
+              operationId: GetAssetAdministrationShellDescriptorById
+              parameters:
+                aasIdentifier: '$response.body#/0/identifier' # TODO: Wildcards are not allowed, so only a reference to the first array entry is possible.
+              description: >-
+                The `identifier` value of the returned Descriptors can be used for the `aasIdentifier` parameter of the GetAssetAdministrationShellDescriptorById API Operation. A base64 encoding of the value is needed.
+            PutAssetAdministrationShellDescriptorById:
+              operationId: PutAssetAdministrationShellDescriptorById
+              parameters:
+                aasIdentifier: '$response.body#/0/identifier' # TODO: Wildcards are not allowed, so only a reference to the first array entry is possible.
+              description: >-
+                The `identifier` value of the returned Descriptors can be used for the `aasIdentifier` parameter of the PutAssetAdministrationShellDescriptorById API Operation. A base64 encoding of the value is needed.
+            # TODO: Add also all the other API Operations.
         default:
           description: Default error handling for unmentioned status codes
           content:
@@ -1389,6 +1415,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
         - name: submodelIdentifier
           in: path
           description: The Submodel’s unique id (UTF8-BASE64-URL-encoded)
@@ -1397,6 +1424,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
       responses:
         '200':
           description: Requested Submodel Descriptor
@@ -1432,6 +1460,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
         - name: submodelIdentifier
           in: path
           description: The Submodel’s unique id (UTF8-BASE64-URL-encoded)
@@ -1440,6 +1469,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
       requestBody:
         description: Submodel Descriptor object
         content:
@@ -1484,6 +1514,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
         - name: submodelIdentifier
           in: path
           description: The Submodel’s unique id (UTF8-BASE64-URL-encoded)
@@ -1492,6 +1523,7 @@ paths:
           explode: false
           schema:
             type: string
+            format: byte
       responses:
         '204':
           description: Submodel Descriptor deleted successfully
@@ -2108,6 +2140,7 @@ paths:
             type: array
             items:
               type: string
+              format: byte
         - name: submodelIds
           in: query
           description: The Submodels' unique ids (UTF8-BASE64-URL-encoded)
@@ -2118,6 +2151,7 @@ paths:
             type: array
             items:
               type: string
+              format: byte
         - name: includeConceptDescriptions
           in: query
           description: Include Concept Descriptions?
@@ -2177,6 +2211,25 @@ paths:
                 type: array
                 items:
                   type: string
+          links:
+            GetAllAssetLinksById:
+              operationId: GetAllAssetLinksById
+              parameters:
+                aasIdentifier: '$response.body#/0' # TODO: 1) Wildcards are not allowed, so only a reference to the first array entry is possible. 2) There is no way to define a needed base64 encoding on the returned value 
+              description: >-
+                The values returned by this operation can be used for the `aasIdentifier` of the GetAllAssetLinksById API Operation.
+            PostAllAssetLinksById:
+              operationId: PostAllAssetLinksById
+              parameters:
+                aasIdentifier: '$response.body#/0' # TODO: 1) Wildcards are not allowed, so only a reference to the first array entry is possible. 2) There is no way to define a needed base64 encoding on the returned value 
+              description: >-
+                The values returned by this operation can be used for the `aasIdentifier` of the PostAllAssetLinksById API Operation.
+            DeleteAllAssetLinksById:
+              operationId: DeleteAllAssetLinksById
+              parameters:
+                aasIdentifier: '$response.body#/0' # TODO: 1) Wildcards are not allowed, so only a reference to the first array entry is possible. 2) There is no way to define a needed base64 encoding on the returned value 
+              description: >-
+                The values returned by this operation can be used for the `aasIdentifier` of the DeleteAllAssetLinksById API Operation.
         default:
           description: Default error handling for unmentioned status codes
           content:
@@ -2238,7 +2291,7 @@ paths:
           explode: false
           schema:
             type: string
-            format: bytev
+            format: byte
       requestBody:
         description: A list of specific Asset identifiers
         content:
