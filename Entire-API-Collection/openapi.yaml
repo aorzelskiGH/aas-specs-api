@@ -62,33 +62,10 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
-        - name: from # TODO: this is only an example for a pagination parameter
-          in: query
-          description: A non-negative number defining the offset page.
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-        - name: size # TODO: this is only an example for a pagination parameter
-          in: query
-          description: The number of elements per page.
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 10000 # TODO: Is a maximum needed?
-            default: 10
-        - name: sort
-          in: query
-          description: The sorting pattern which shall be applied.
-          required: false
-          schema:
-            type: string
-            default: idShort-alphabetical
-            enum:
-            - idShort-alphabetical
-            - newest-first
-            - oldest-first
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/From'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/Size'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/Sort'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/Size'
       responses:
         '200':
           description: Requested Asset Administration Shells
