@@ -62,10 +62,10 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Level'
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Content'
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.0RC03#/components/parameters/Extent'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/From'
+        - $ref: 'https://app.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/From'
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/Size'
         - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/Sort'
-        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/Size'
+        - $ref: 'https://api.swaggerhub.com/domains/Plattform_i40/Part2-API-Schemas/V1.1_working_version#/components/parameters/Count'
       responses:
         '200':
           description: Requested Asset Administration Shells
