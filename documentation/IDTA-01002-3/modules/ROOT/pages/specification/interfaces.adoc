@@ -66,7 +66,7 @@ e|payload a|Requested Asset Administration Shell |yes |AssetAdministrationShell 
 [width=100%, cols="25%,35%,10%,20%,10%"]
 |===
 h|*Operation Name* 4+e|PutAssetAdministrationShell
-hh|Explanation 4+a|Replaces the Asset Administration Shell
+h|Explanation 4+a|Replaces the Asset Administration Shell
 h|*semanticId* 4+|`\https://admin-shell.io/aas/API/PutAssetAdministrationShell/3/0`
 
 h|Name h|*Description* h|*Mand.* h|*Type* h|*Card.*
